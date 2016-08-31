@@ -28,9 +28,12 @@ def oncampus():
   elif request.form['text'].lower() == "who":
     text_response = []
     for username in c.execute("SELECT name FROM oncampus"):
-      text_response.append("<@U024BE7LH|%s> is currently on campus. \n" % username)
+      text_response.append("%s is currently on campus. \n" % username)
 
-    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(c.execute("SELECT * FROM oncampus").rowcount), "attachments": [{"text": "\n".join(text_response)}]})
+    c.execute("SELECT COUNT(*) FROM oncampus")
+    result = c.fetchone()[0]
+
+    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(result), "attachments": [{"text": "\n".join(text_response)}]})
   else:
     return "Not sure what you are looking for."
 
