@@ -5,6 +5,10 @@ import sqlite3
 conn = sqlite3.connect('oncampus')
 c = conn.cursor()
 
+@app.route('/')
+def hello():
+  return "Made with <3 at Flatiron School"
+
 @app.route('/oncampus', methods=["POST"])
 def oncampus():
   print request.form
@@ -37,4 +41,4 @@ def oncampus():
   else:
     return "Not sure what you are looking for."
 
-app.run()
+app.run(host="0.0.0.0", port=80)
