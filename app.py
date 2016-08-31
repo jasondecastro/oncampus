@@ -41,4 +41,5 @@ def oncampus():
   else:
     return "Not sure what you are looking for."
 
-app.run()
+if __name__ == '__main__':
+  app.run()
