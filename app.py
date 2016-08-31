@@ -26,7 +26,11 @@ def oncampus():
     else:
       return "You never checked in, but I\'ll check you out anyway."
   elif request.form['text'].lower() == "who":
-    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(c.execute("SELECT * FROM oncampus").rowcount), "attachments": [{"text":"You are online."}]})
+    text_response = []
+    for username in c.execute("SELECT name FROM oncampus"):
+      text_response.append("%s is currently on campus. \n" % username)
+
+    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(c.execute("SELECT * FROM oncampus").rowcount), "attachments": [{"text": text_response}]})
   else:
     return "Not sure what you are looking for."
 
