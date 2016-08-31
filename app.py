@@ -10,7 +10,7 @@ def oncampus():
   print request.form
   if request.form['text'].lower() == "yes":
     print c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']).rowcount
-    if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']) == 1:
+    if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']).rowcount == 1:
       return "You have already checked into the Flatiron School campus."
     else:
       c.execute("INSERT INTO oncampus VALUES (null, '%s')" % request.form['user_name'])
