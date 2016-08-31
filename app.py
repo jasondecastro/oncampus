@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 import sqlite3
@@ -24,7 +24,7 @@ def oncampus():
     else:
       return "You never checked in, but I\'ll check you out anyway."
   elif request.form['text'].lower() == "who":
-    return "Coming soon."
+    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(c.execute("SELECT * FROM oncampus").rowcount), "attachments": [{"text":"You are online."}]}})
   else:
     return "Not sure what you are looking for."
 
