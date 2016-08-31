@@ -9,7 +9,7 @@ c = conn.cursor()
 def oncampus():
   print request.form
   if request.form['text'].lower() == "yes":
-    if c.execute("SELECT COUNT(*) FROM oncampus WHERE name = '%s'" % request.form['user_name']) == 1:
+    if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']).fetchone() == 1:
       return "You have already checked into the Flatiron School campus."
     else:
       c.execute("INSERT INTO oncampus VALUES (null, '%s')" % request.form['user_name'])
@@ -23,7 +23,7 @@ def oncampus():
     else:
       return "You never checked in, but I\'ll check you out anyway."
   elif request.form['text'].lower() == "who":
-    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(c.execute("SELECT COUNT(*) FROM oncampus")), "attachments": [{"text":"You are online."}]})
+    return jsonify({"response_type": "in_channel", "text": "There are %d people on campus right now." % c.execute("SELECT COUNT(*) FROM oncampus"), "attachments": [{"text":"You are online."}]})
   else:
     return "Not sure what you are looking for."
 
