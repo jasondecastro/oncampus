@@ -41,4 +41,4 @@ def oncampus():
   else:
     return "Not sure what you are looking for."
 
-app.run(host="0.0.0.0", port=80)
+app.run()
