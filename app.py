@@ -30,7 +30,7 @@ def oncampus():
     for username in c.execute("SELECT name FROM oncampus"):
       text_response.append("%s is currently on campus. \n" % username)
 
-    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(c.execute("SELECT * FROM oncampus").rowcount), "attachments": [{"text": text_response.join("\n")}]})
+    return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now." % str(c.execute("SELECT * FROM oncampus").rowcount), "attachments": [{"text": "\n".join(text_response)}]})
   else:
     return "Not sure what you are looking for."
 
