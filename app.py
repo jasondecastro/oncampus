@@ -7,18 +7,18 @@ c = conn.cursor()
 
 @app.route('/oncampus', methods=["POST"])
 def oncampus():
-  if text.lower() == "yes":
+  if request.form['text'].lower() == "yes":
     c.execute("INSERT INTO oncampus VALUES (%s)" % request.form['name'])
     conn.commit()
     return "You have checked into the Flatiron School campus."
-  elif text.lower() == "no":
+  elif request.form['text'].lower() == "no":
     if c.execute("SELECT * FROM oncampus WHERE name = %s" % request.form['name']):
       c.execute("DELETE FROM oncampus WHERE name = %s" % request.form['name'])
       conn.commit()
       return "You have checked out of the Flatiron School campus."
     else:
       return "You never checked in, but I\'ll check you out anyway."
-  elif text.lower() == "who":
+  elif request.form['text'].lower() == "who":
     return "Coming soon."
   else:
     return "Not sure what you are looking for."
