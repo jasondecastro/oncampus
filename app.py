@@ -10,7 +10,7 @@ def oncampus():
   print request.form
   if request.form['text'].lower() == "yes":
     print "inside 1"
-    c.execute("INSERT INTO oncampus VALUES ('%s')" % request.form['user_name'])
+    c.execute("INSERT INTO oncampus VALUES (null, '%s')" % request.form['user_name'])
     print "inside 2"
     conn.commit()
     print "inside 3"
