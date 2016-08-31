@@ -2,7 +2,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 import sqlite3
-conn = sqlite3.connect('oncampus.sqlite')
+conn = sqlite3.connect('oncampus')
 c = conn.cursor()
 
 @app.route('/oncampus', methods=["POST"])
