@@ -9,8 +9,11 @@ c = conn.cursor()
 def oncampus():
   print request.form
   if request.form['text'].lower() == "yes":
+    print "inside 1"
     c.execute("INSERT INTO oncampus VALUES (%s)" % request.form['name'])
+    print "inside 2"
     conn.commit()
+    print "inside 3"
     return "You have checked into the Flatiron School campus."
   elif request.form['text'].lower() == "no":
     if c.execute("SELECT * FROM oncampus WHERE name = %s" % request.form['name']):
