@@ -9,7 +9,7 @@ c = conn.cursor()
 def oncampus():
   print request.form
   if request.form['text'].lower() == "yes":
-    print c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name'])
+    print c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']).rowcount
     if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']):
       return "You have already checked into the Flatiron School campus."
     else:
