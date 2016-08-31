@@ -14,9 +14,9 @@ def oncampus():
     return "You have checked into the Flatiron School campus."
   elif request.form['text'].lower() == "no":
     print 'inside 1'
-    if c.execute("SELECT * FROM oncampus WHERE name = %s" % request.form['user_name']):
+    if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']):
       print 'inside 2'
-      c.execute("DELETE FROM oncampus WHERE name = %s" % request.form['user_name'])
+      c.execute("DELETE FROM oncampus WHERE name = '%s'" % request.form['user_name'])
       print 'inside 3'
       conn.commit()
       print 'inside 4'
