@@ -7,7 +7,7 @@ c = conn.cursor()
 
 @app.route('/')
 def hello():
-  return "Made with <3 at Flatiron School"
+  return "Made with <style='color:red;'>&hearts;</style> at <a href='http://flatironschool.com'>Flatiron School</a>"
 
 @app.route('/oncampus', methods=["POST"])
 def oncampus():
