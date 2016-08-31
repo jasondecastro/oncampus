@@ -7,6 +7,7 @@ c = conn.cursor()
 
 @app.route('/oncampus', methods=["POST"])
 def oncampus():
+  print request.form
   if request.form['text'].lower() == "yes":
     c.execute("INSERT INTO oncampus VALUES (%s)" % request.form['name'])
     conn.commit()
