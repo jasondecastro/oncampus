@@ -14,7 +14,7 @@ def oncampus():
     else:
       try:
         c.execute("INSERT INTO oncampus VALUES (null, '%s')" % request.form['user_name'])
-      except IntegrityError:
+      except sqlite3.IntegrityError:
         return "You have already checked into the Flatiron School campus."
       conn.commit()
       return "You have checked into the Flatiron School campus."
