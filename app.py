@@ -22,7 +22,7 @@ def oncampus():
         except sqlite3.IntegrityError:
           return "You have already checked into the Flatiron School campus."
         conn.commit()
-        return jsonify({"response_type": "in_channel", "text": "%s has checked into the Flatiron School campus."})
+        return jsonify({"response_type": "in_channel", "text": "%s has checked into the Flatiron School campus." % request.form['user_name']})
         # return "You have checked into the Flatiron School campus."
     elif request.form['text'].lower() == "no":
       if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']):
