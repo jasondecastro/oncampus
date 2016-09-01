@@ -28,7 +28,7 @@ def oncampus():
       if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']):
         c.execute("DELETE FROM oncampus WHERE name = '%s'" % request.form['user_name'])
         conn.commit()
-        return jsonify({"response_type": "in_channel", "text": "%s has checked out of the Flatiron School campus."})
+        return jsonify({"response_type": "in_channel", "text": "%s has checked out of the Flatiron School campus." % request.form['user_name']})
         # return "You have checked out of the Flatiron School campus."
       else:
         return "You never checked in, but I\'ll check you out anyway."
