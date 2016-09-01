@@ -22,12 +22,14 @@ def oncampus():
         except sqlite3.IntegrityError:
           return "You have already checked into the Flatiron School campus."
         conn.commit()
-        return "You have checked into the Flatiron School campus."
+        return jsonify({"response_type": "in_channel", "text": "%s has checked into the Flatiron School campus."})
+        # return "You have checked into the Flatiron School campus."
     elif request.form['text'].lower() == "no":
       if c.execute("SELECT * FROM oncampus WHERE name = '%s'" % request.form['user_name']):
         c.execute("DELETE FROM oncampus WHERE name = '%s'" % request.form['user_name'])
         conn.commit()
-        return "You have checked out of the Flatiron School campus."
+        return jsonify({"response_type": "in_channel", "text": "%s has checked out of the Flatiron School campus."})
+        # return "You have checked out of the Flatiron School campus."
       else:
         return "You never checked in, but I\'ll check you out anyway."
     elif request.form['text'].lower() == "who":
