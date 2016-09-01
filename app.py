@@ -38,7 +38,7 @@ def oncampus():
       c.execute("SELECT COUNT(*) FROM oncampus")
       result = c.fetchone()[0]
 
-      return jsonify({"response_type": "in_channel", "text": "There are %s people on campus right now!" % str(result), "attachments": [{"text": "\n".join(text_response)}]})
+      return jsonify({"response_type": "ephemeral", "text": "There are %s people on campus right now!" % str(result), "attachments": [{"text": "\n".join(text_response)}]})
     else:
       return "Not sure what you are looking for."
   else:
