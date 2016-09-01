@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 
 import sqlite3
@@ -7,7 +7,8 @@ c = conn.cursor()
 
 @app.route('/')
 def hello():
-  return "Made with <span style='color:red;'>&hearts;</span> at <a href='http://flatironschool.com'>Flatiron School</a>"
+  oncampus = c.execute("SELECT name FROM oncampus")
+  return render_template('index.html', oncampus=oncampus)
 
 @app.route('/oncampus', methods=["POST"])
 def oncampus():
