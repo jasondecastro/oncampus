@@ -43,7 +43,7 @@ def oncampus():
     return "Not sure what you are looking for."
 
 @app.route('/<anything>', methods=['GET'])
-def redirect_this():
+def redirect_this(anything):
   return redirect(url_for('hello'))
 
 if __name__ == '__main__':
